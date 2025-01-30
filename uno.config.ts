@@ -23,11 +23,12 @@ export default defineConfig({
   presets: Object.values(PRESET),
   theme: {
     colors: {
-      logo: '#fffcf2',
+      default: '#fffcf2',
       primary: '#52b788',
       secondary: '#74c69d',
       fontColor: '#484848',
       warningColor: '#d62828',
+      backgroundColor: '#fef9ef',
       // default: '#57cc99',
       // primary: '#8fc0a9',
       // primaryLight: '#c8d5b9',
