@@ -66,7 +66,17 @@ const Navbar = () => {
       </Link>
 
       <div className="hidden flex-grow-1 items-center gap-sm lg:flex">
-        <Image src="/assets/images/sale.webp" alt="product" width={150} height={30} />
+        <Image
+          src="/assets/images/sale.webp"
+          alt="product"
+          width={120}
+          height={0}
+          style={{
+            width: 'auto',
+            height: 'auto',
+          }}
+          priority
+        />
         <DesktopMenu onRedirect={redirectToCategories} />
       </div>
 

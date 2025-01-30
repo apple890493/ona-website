@@ -22,14 +22,19 @@ const ProductCard = ({ product }: ProductCardProps) => {
       className="gap flex flex-col cursor-pointer items-center gap-2 lg:gap-3 lg:opacity-90 lg:hover:opacity-100"
       onClick={redirectToProduct}
     >
-      <Image
-        src={imageUrl}
-        alt={product.name}
-        width={320}
-        height={320}
-        priority
-        className="h-50 w-50 bg-white lg:h-80 lg:w-80"
-      />
+      <div className="h-50 w-50 flex items-center bg-white lg:h-80 lg:w-80">
+        <Image
+          src={imageUrl}
+          alt={product.name}
+          width={320}
+          height={320}
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
+          priority
+        />
+      </div>
       <p className="text-sm text-teal-950 tracking-wider md:text-lg">{product.name}</p>
       <p className="text-base text-teal-950 font-bold md:text-xl">
         NT$
