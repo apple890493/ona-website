@@ -1,1 +1,3 @@
-export { default } from '@/container/Product'
+import Product from '@/container/Product'
+
+export default Product

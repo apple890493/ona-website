@@ -4,11 +4,15 @@ import React, { useMemo } from 'react'
 import { MdArrowBackIos, MdAutorenew } from 'react-icons/md'
 
 import { PRODUCTS } from '@/constants/products'
-import type { Product } from '@/constants/types'
+import type { OrderItem, Product } from '@/constants/types'
 import Detail from '@/container/Product/components/Detail'
+import { useCart } from '@/context/CarContext'
+import { useMessage } from '@/context/MessageContext'
 
 const Product = () => {
   const router = useRouter()
+  const { addToCart } = useCart()
+  const { showMessage } = useMessage()
   const id = router.query.slug
   const currentProduct = PRODUCTS.find((product) => product.id === id)
   const imageUrl = useMemo(() => `/assets/images/products/${currentProduct?.id}.webp`, [currentProduct?.id])
@@ -22,6 +26,15 @@ const Product = () => {
         <MdAutorenew size={30} className="animate-spin animate-duration-1s animate-count-infinite" />
       </div>
     )
+  }
+
+  const onAddToCart = async (item: OrderItem) => {
+    try {
+      await addToCart(item)
+      showMessage('已加入購物車')
+    } catch (error) {
+      showMessage('已加入購物車失敗')
+    }
   }
 
   return (
@@ -51,7 +64,7 @@ const Product = () => {
           </div>
         </div>
         <div className="flex-1">
-          <Detail currentProduct={currentProduct} />
+          <Detail currentProduct={currentProduct} onAddToCart={onAddToCart} />
         </div>
       </div>
     </>

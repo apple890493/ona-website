@@ -12,7 +12,7 @@ const Categories = () => {
 
   return (
     <>
-      <h1 className="pb-4xl text-center text-4xl text-fontColorLight font-bold tracking-widest">{currentCategory}</h1>
+      <h1 className="text-fontColorLight pb-4xl text-center text-4xl font-bold tracking-widest">{currentCategory}</h1>
       <div className="grid grid-cols-2 gap-sm lg:grid-cols-4 md:grid-cols-3 md:gap-lg">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />

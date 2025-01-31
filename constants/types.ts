@@ -17,3 +17,10 @@ export type Product = {
   items: ProductItem[]
   details: string[][]
 }
+
+export type OrderItem = {
+  id: string
+  size: number
+  amount: number
+  price: number
+}

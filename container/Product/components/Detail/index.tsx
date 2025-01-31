@@ -1,16 +1,17 @@
 import React, { useMemo, useState } from 'react'
 
 import Select from '@/components/Select'
-import type { Product, ProductItem, ProductOption } from '@/constants/types'
+import type { OrderItem, Product, ProductItem, ProductOption } from '@/constants/types'
 
 interface DetailProps {
   currentProduct: Product
+  onAddToCart: (order: OrderItem) => void
 }
 
 const AMOUNT_BUTTON_CLASS =
   'h-10 w-10 border-2 border-primary rounded-full bg-white font-bold lg:hover:bg-secondary lg:hover:text-white'
 
-const Detail = ({ currentProduct }: DetailProps) => {
+const Detail = ({ currentProduct, onAddToCart }: DetailProps) => {
   const CURRENT_PRODUCT_DEFAULT = currentProduct?.items[0] || { options: [] }
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | undefined>(CURRENT_PRODUCT_DEFAULT)
   const [selectedOption, setSelectedOption] = useState<ProductOption | undefined>(CURRENT_PRODUCT_DEFAULT.options[0])
@@ -63,6 +64,18 @@ const Detail = ({ currentProduct }: DetailProps) => {
     [selectedProduct]
   )
 
+  const addToCart = () => {
+    if (!selectedOption || !selectedProduct) return
+    onAddToCart({
+      id: selectedProduct.id,
+      size: selectedOption.size,
+      price: selectedOption.price,
+      amount,
+    })
+
+    setAmount(1)
+  }
+
   return (
     <div className="w-full flex flex-col gap-5 px-4 text-fontColor lg:w-lg">
       <div className="text-2xl font-bold lg:text-3xl">{currentProduct.name}</div>
@@ -87,7 +100,10 @@ const Detail = ({ currentProduct }: DetailProps) => {
             +
           </button>
         </div>
-        <button className="rounded bg-primary px-3 py-2 text-white tracking-widest hover:bg-secondary">
+        <button
+          className="rounded bg-primary px-3 py-2 text-white tracking-widest hover:bg-secondary"
+          onClick={addToCart}
+        >
           加入購物車
         </button>
       </div>

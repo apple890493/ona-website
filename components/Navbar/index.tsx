@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { MdContentCut, MdLinearScale, MdMenu, MdShoppingCart } from 'react-icons/md'
 
 import { MENU_CONFIG } from '@/constants/menu'
+import { useCart } from '@/context/CarContext'
 
 const DesktopMenu = ({ onRedirect }: { onRedirect: (category: string) => void }) => {
   return (
@@ -43,6 +44,7 @@ const MobileMenu = ({ isOpen, onRedirect }: { isOpen: boolean; onRedirect: (cate
 }
 
 const Navbar = () => {
+  const { cartItemCount } = useCart()
   const router = useRouter()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -86,8 +88,11 @@ const Navbar = () => {
           replace
           className="flex items-center justify-center gap-2 border-2 border-white rounded-md px-4 py-2 text-lg tracking-widest transition-all duration-300 lg:hover:bg-default lg:hover:text-primary"
         >
-          購物車
+          <span>購物車</span>
           <MdShoppingCart size={30} />
+          {cartItemCount > 0 && (
+            <span className="h-6 w-6 rounded-full bg-red-700 text-center text-base text-white">{cartItemCount}</span>
+          )}
         </Link>
 
         <div className="lg:hidden">
