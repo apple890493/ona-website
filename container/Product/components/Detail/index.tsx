@@ -97,7 +97,7 @@ const Detail = ({ currentProduct }: DetailProps) => {
         {details.map((detail, index) => (
           <li key={index}>
             {detail.map((content, contentIdx) => (
-              <p className={contentIdx === 0 ? 'text-primary font-bold' : 'ml-3'} key={content + contentIdx}>
+              <p className={contentIdx === 0 ? 'text-primary font-bold' : 'ml-3 mt-1'} key={content + contentIdx}>
                 {content}
               </p>
             ))}
