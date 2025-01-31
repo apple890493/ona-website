@@ -84,7 +84,7 @@ const Navbar = () => {
         <Link
           href="/cart"
           replace
-          className="flex items-center justify-center gap-2 border border-white rounded-md px-4 py-2 text-lg tracking-widest transition-all duration-300 hover:bg-default hover:text-primary"
+          className="flex items-center justify-center gap-2 border-2 border-white rounded-md px-4 py-2 text-lg tracking-widest transition-all duration-300 lg:hover:bg-default lg:hover:text-primary"
         >
           購物車
           <MdShoppingCart size={30} />

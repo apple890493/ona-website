@@ -24,9 +24,10 @@ export default defineConfig({
   theme: {
     colors: {
       default: '#fffcf2',
-      primary: '#52b788',
-      secondary: '#74c69d',
-      fontColor: '#484848',
+      primary: '#d4a276',
+      secondary: '#e7bc91',
+      fontColor: '#422006',
+      fontColorLight: '#713f12',
       warningColor: '#d62828',
       backgroundColor: '#fef9ef',
       // default: '#57cc99',

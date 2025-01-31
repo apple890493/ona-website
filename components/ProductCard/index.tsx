@@ -22,12 +22,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
       className="gap flex flex-col cursor-pointer items-center gap-2 lg:gap-3 lg:opacity-90 lg:hover:opacity-100"
       onClick={redirectToProduct}
     >
-      <div className="h-45 w-45 flex items-center bg-white lg:h-80 lg:w-80">
+      <div className="h-40 w-40 flex items-center bg-white lg:h-80 lg:w-80">
         <Image
           src={imageUrl}
           alt={product.name}
-          width={320}
-          height={320}
+          width={300}
+          height={300}
           style={{
             width: '100%',
             height: '100%',
@@ -35,10 +35,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
           priority
         />
       </div>
-      <p className="text-sm text-teal-950 tracking-wider md:text-lg">{product.name}</p>
-      <p className="text-base text-teal-950 font-bold md:text-xl">
+      <p className="text-sm text-fontColor tracking-wider md:text-lg">{product.name}</p>
+      <p className="text-base text-fontColor font-bold md:text-xl">
         NT$
-        <span className="ml-1 text-teal-950 line-through">{price}</span>
+        <span className="ml-1 text-fontColor line-through">{price}</span>
         <span className="ml-2 text-warningColor">{discountPrice}</span>
       </p>
     </div>
