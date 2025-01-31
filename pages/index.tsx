@@ -11,17 +11,14 @@ const Home = () => {
         產品全面１件９折 / ２件以上８.5折（除了 Rica & 京喚羽）
       </div>
       <h1 className="py-4xl text-center text-4xl text-teal-900 font-bold tracking-widest">熱門商品</h1>
-      <div className="grid grid-cols-2 gap-sm md:grid-cols-3 md:gap-3xl">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-3xl">
         {TOP_PRODUCTS.map((product, index) => (
           <div key={product.id}>
             <div className="mb-4 flex items-center justify-center text-4xl text-red-500 font-bold">
-              {index === 0 ? (
-                <IoMdTrophy size={36} />
-              ) : (
-                <>
-                  <span className="ml-2">{index + 1}</span> <MdOutlineStar size={30} />
-                </>
-              )}
+              <>
+                <span className="ml-2">{index + 1}</span>
+                {index === 0 ? <IoMdTrophy size={30} /> : <MdOutlineStar size={30} />}
+              </>
             </div>
             <ProductCard product={product} />
           </div>

@@ -8,7 +8,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const price = product.options[0].price
+  const price = product.price
   const discountPrice = price * 0.9
   const imageUrl = `/assets/images/products/${product.id}.webp`
 
@@ -22,7 +22,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       className="gap flex flex-col cursor-pointer items-center gap-2 lg:gap-3 lg:opacity-90 lg:hover:opacity-100"
       onClick={redirectToProduct}
     >
-      <div className="h-50 w-50 flex items-center bg-white lg:h-80 lg:w-80">
+      <div className="h-45 w-45 flex items-center bg-white lg:h-80 lg:w-80">
         <Image
           src={imageUrl}
           alt={product.name}

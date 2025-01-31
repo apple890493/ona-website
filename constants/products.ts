@@ -5,14 +5,83 @@ export const PRODUCTS: Product[] = [
     id: 'milbon_shampoo',
     name: 'mILBon 洗髮精',
     type: 'shampoo',
-    options: [
+    price: 1900,
+    items: [
       {
-        size: '200',
-        price: 900,
+        id: 'milbonS1',
+        name: '淨緻洗髮精',
+        options: [
+          {
+            size: 500,
+            price: 1900,
+          },
+        ],
       },
       {
-        size: '500',
-        price: 1900,
+        id: 'milbonS2',
+        name: '豐韌洗髮精',
+        options: [
+          {
+            size: 500,
+            price: 1900,
+          },
+        ],
+      },
+      {
+        id: 'milbonS3',
+        name: '順澤洗髮精',
+        options: [
+          {
+            size: 200,
+            price: 900,
+          },
+          {
+            size: 500,
+            price: 1900,
+          },
+        ],
+      },
+      {
+        id: 'milbonS4',
+        name: '潤活洗髮精',
+        options: [
+          {
+            size: 200,
+            price: 900,
+          },
+          {
+            size: 500,
+            price: 1900,
+          },
+        ],
+      },
+      {
+        id: 'milbonS5',
+        name: '水妍洗髮精',
+        options: [
+          {
+            size: 200,
+            price: 900,
+          },
+          {
+            size: 500,
+            price: 1900,
+          },
+        ],
+      },
+      {
+        id: 'milbonS6',
+        name: '絲柔洗髮精',
+        options: [
+          {
+            size: 200,
+            price: 900,
+          },
+          {
+            size: 500,
+            price: 1900,
+          },
+        ],
       },
     ],
     details: [
@@ -21,7 +90,7 @@ export const PRODUCTS: Product[] = [
         '改善頭皮出油、消除異味',
         '去除含有脂肪酸的皮脂導向健康頭皮環境去除頭皮的「癢、皮屑 • 乾燥 • 油膩 • 氣味」5 大問題',
       ],
-      ['<豐韌洗髮精>豐韌系列只有500ml', '改善髮根扁塌問題導向髮根蓬鬆挺立的秀髮', '適合：蓬鬆、頭髮扁塌者'],
+      ['<豐韌洗髮精> 豐韌系列只有500ml', '改善髮根扁塌問題導向髮根蓬鬆挺立的秀髮', '適合：蓬鬆、頭髮扁塌者'],
       [
         '<順澤洗髮精>',
         '利用膠原蛋白活性劑導入毛髮中，讓髮絲柔軟水潤，撫平自然卷的毛躁感給予柔軟洗髮質感',
@@ -51,14 +120,63 @@ export const PRODUCTS: Product[] = [
     id: 'milbon_treatment',
     name: 'mILBon 護髮素',
     type: 'treatment',
-    options: [
+    price: 1300,
+    items: [
       {
-        size: '200',
-        price: 1300,
+        id: 'milbonT1',
+        name: '潤活HEAT護髮素',
+        options: [
+          {
+            size: 200,
+            price: 1300,
+          },
+          {
+            size: 500,
+            price: 2200,
+          },
+        ],
       },
       {
-        size: '500',
-        price: 2200,
+        id: 'milbonT2',
+        name: '潤活護髮素',
+        options: [
+          {
+            size: 200,
+            price: 1300,
+          },
+          {
+            size: 500,
+            price: 2200,
+          },
+        ],
+      },
+      {
+        id: 'milbonT3',
+        name: '水妍護髮素',
+        options: [
+          {
+            size: 200,
+            price: 1300,
+          },
+          {
+            size: 500,
+            price: 2200,
+          },
+        ],
+      },
+      {
+        id: 'milbonT4',
+        name: '金澤護髮素',
+        options: [
+          {
+            size: 200,
+            price: 1300,
+          },
+          {
+            size: 500,
+            price: 2200,
+          },
+        ],
       },
     ],
     details: [
@@ -77,14 +195,21 @@ export const PRODUCTS: Product[] = [
     id: 'rica_opuntia_treatment',
     name: 'RICA 梨果仙人掌髮膜',
     type: 'treatment',
-    options: [
+    price: 1600,
+    items: [
       {
-        size: '150',
-        price: 1600,
-      },
-      {
-        size: '1000',
-        price: 4200,
+        id: 'ricaOpuntiaT1',
+        name: '梨果仙人掌髮膜',
+        options: [
+          {
+            size: 150,
+            price: 1600,
+          },
+          {
+            size: 1000,
+            price: 4200,
+          },
+        ],
       },
     ],
     details: [['Rica 熱銷排行第一名護髮膜', '革命性護髮概念，獻給受損髮的進化髮膜', '適合：所有髮質']],
@@ -93,10 +218,37 @@ export const PRODUCTS: Product[] = [
     id: 'yunaro_shampoo',
     name: '蘊洛洗髮精',
     type: 'shampoo',
-    options: [
+    price: 1200,
+    items: [
       {
-        size: '500',
-        price: 1200,
+        id: 'yunaroS1',
+        name: '淨化蘊髮露洗髮精',
+        options: [
+          {
+            size: 500,
+            price: 1200,
+          },
+        ],
+      },
+      {
+        id: 'yunaroS2',
+        name: '平衡蘊髮露洗髮精',
+        options: [
+          {
+            size: 500,
+            price: 1200,
+          },
+        ],
+      },
+      {
+        id: 'yunaroS3',
+        name: '強韌蘊髮露洗髮精',
+        options: [
+          {
+            size: 500,
+            price: 1200,
+          },
+        ],
       },
     ],
     details: [
@@ -109,14 +261,49 @@ export const PRODUCTS: Product[] = [
     id: 'milbon_black_treatment',
     name: 'mILBon 黑凜護髮素',
     type: 'treatment',
-    options: [
+    price: 1600,
+    items: [
       {
-        size: '200',
-        price: 1600,
+        id: 'milbonBlackT1',
+        name: '漾澤護髮素',
+        options: [
+          {
+            size: 200,
+            price: 1600,
+          },
+          {
+            size: 500,
+            price: 12900,
+          },
+        ],
       },
       {
-        size: '500',
-        price: 12900,
+        id: 'milbonBlackT2',
+        name: '喚彈護髮素',
+        options: [
+          {
+            size: 200,
+            price: 1600,
+          },
+          {
+            size: 500,
+            price: 12900,
+          },
+        ],
+      },
+      {
+        id: 'milbonBlackT3',
+        name: '柔曜護髮素',
+        options: [
+          {
+            size: 200,
+            price: 1600,
+          },
+          {
+            size: 500,
+            price: 12900,
+          },
+        ],
       },
     ],
     details: [
@@ -134,10 +321,27 @@ export const PRODUCTS: Product[] = [
     id: 'rica_essence',
     name: 'RICA 活氧精華',
     type: 'scalp',
-    options: [
+    price: 1480,
+    items: [
       {
-        size: '100',
-        price: 1480,
+        id: 'ricaEssence1',
+        name: '奇蹟活氧精華',
+        options: [
+          {
+            size: 100,
+            price: 1480,
+          },
+        ],
+      },
+      {
+        id: 'ricaEssence2',
+        name: '舒活調理精華',
+        options: [
+          {
+            size: 100,
+            price: 1480,
+          },
+        ],
       },
     ],
     details: [
@@ -159,30 +363,54 @@ export const PRODUCTS: Product[] = [
     id: 'milbon_style_spray',
     name: 'mILBon 定型噴霧',
     type: 'styling',
-    options: [
+    price: 950,
+    items: [
       {
-        size: '210',
-        price: 950,
+        id: 'milbonStlSpray1',
+        name: '輕霧造型噴霧６號',
+        options: [
+          {
+            size: 210,
+            price: 950,
+          },
+        ],
+      },
+      {
+        id: 'milbonStlSpray2',
+        name: '極塑造型噴霧１０號',
+        options: [
+          {
+            size: 210,
+            price: 950,
+          },
+        ],
       },
     ],
     details: [
       [
-        '<輕霧造型噴霧6號>',
+        '<輕霧造型噴霧６號>',
         '創造柔軟輕盈質地、霧感的造型、乾鬆質感',
         '質感表現-霧感、定型力、蓬鬆感，梳得開 瀏海超適合',
         '使用方式：維持髮尾細節，距離髮尾20~30cm，抓起頭髮噴灑維持髮根豐盈，離髮根10~15cm的近距離處，抓捏一小撮一點一點噴灑',
       ],
-      ['<極塑造型噴霧10號>', '質感表現-定型力、速乾'],
+      ['<極塑造型噴霧１０號>', '質感表現-定型力、速乾'],
     ],
   },
   {
     id: 'qura',
     name: '雪球藍慕斯',
     type: 'treatment',
-    options: [
+    price: 900,
+    items: [
       {
-        size: '200',
-        price: 900,
+        id: 'qura',
+        name: '雪球藍慕斯',
+        options: [
+          {
+            size: 200,
+            price: 900,
+          },
+        ],
       },
     ],
     details: [
@@ -197,10 +425,17 @@ export const PRODUCTS: Product[] = [
     id: 'yunaro_care',
     name: '蘊洛濃密蘊萃精華',
     type: 'scalp',
-    options: [
+    price: 1200,
+    items: [
       {
-        size: '100',
-        price: 1200,
+        id: 'yunaroCare',
+        name: '濃密蘊萃精華',
+        options: [
+          {
+            size: 100,
+            price: 1200,
+          },
+        ],
       },
     ],
     details: [['<濃密蘊萃精華>', '調節頭皮油脂分泌 活絡髮肌再生力', '適合：油性、雄性禿']],
@@ -209,10 +444,17 @@ export const PRODUCTS: Product[] = [
     id: 'milbon_oil',
     name: 'mILBon 精華露',
     type: 'oil',
-    options: [
+    price: 1450,
+    items: [
       {
-        size: '120',
-        price: 1450,
+        id: 'milbonOil',
+        name: '順澤精華露',
+        options: [
+          {
+            size: 120,
+            price: 1450,
+          },
+        ],
       },
     ],
     details: [
@@ -228,14 +470,21 @@ export const PRODUCTS: Product[] = [
     id: 'rica_opuntia_oil',
     name: 'RICA 梨果仙人掌油',
     type: 'oil',
-    options: [
+    price: 1500,
+    items: [
       {
-        size: '50',
-        price: 1500,
-      },
-      {
-        size: '120',
-        price: 2000,
+        id: 'ricaOpuntiaOil',
+        name: '梨果仙人掌油',
+        options: [
+          {
+            size: 50,
+            price: 1500,
+          },
+          {
+            size: 120,
+            price: 2000,
+          },
+        ],
       },
     ],
     details: [
@@ -251,22 +500,36 @@ export const PRODUCTS: Product[] = [
     id: 'milbon_style_cream',
     name: 'mILBon 光亮造型霜８號',
     type: 'styling',
-    options: [
+    price: 950,
+    items: [
       {
-        size: '150',
-        price: 950,
+        id: 'milbonStlCream',
+        name: '光亮造型霜８號',
+        options: [
+          {
+            size: 150,
+            price: 950,
+          },
+        ],
       },
     ],
-    details: [['<光亮造型霜8號>', '溼潤的束髮動感', '質感表現-塑型力、濕潤感、束感']],
+    details: [['<光亮造型霜８號>', '溼潤的束髮動感', '質感表現-塑型力、濕潤感、束感']],
   },
   {
     id: 'rica_sea _salt _spray',
     name: 'RICA 火山海鹽噴霧',
     type: 'styling',
-    options: [
+    price: 900,
+    items: [
       {
-        size: '250',
-        price: 900,
+        id: 'ricaSeaSaltSpray',
+        name: '火山海鹽噴霧',
+        options: [
+          {
+            size: 250,
+            price: 900,
+          },
+        ],
       },
     ],
     details: [
@@ -281,10 +544,17 @@ export const PRODUCTS: Product[] = [
     id: 'rica_modeling_paste',
     name: 'RICA 火山霧感蠟',
     type: 'styling',
-    options: [
+    price: 880,
+    items: [
       {
-        size: '100',
-        price: 880,
+        id: 'ricaModelingPaste',
+        name: '火山霧感蠟',
+        options: [
+          {
+            size: 100,
+            price: 880,
+          },
+        ],
       },
     ],
     details: [
@@ -297,12 +567,19 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'rica_unique_matt_clay',
-    name: 'RICA 火山亮感蠟 ',
+    name: 'RICA 火山亮感蠟',
     type: 'styling',
-    options: [
+    price: 880,
+    items: [
       {
-        size: '100',
-        price: 880,
+        id: 'ricaUniqueMattClay',
+        name: '火山亮感蠟',
+        options: [
+          {
+            size: 100,
+            price: 880,
+          },
+        ],
       },
     ],
     details: [
@@ -317,10 +594,17 @@ export const PRODUCTS: Product[] = [
     id: 'tokio_ie_shampoo',
     name: '京喚羽淨露洗髮精',
     type: 'shampoo',
-    options: [
+    price: 2100,
+    items: [
       {
-        size: '400',
-        price: 2100,
+        id: 'tokioIeS',
+        name: '喚羽淨露',
+        options: [
+          {
+            size: 400,
+            price: 2100,
+          },
+        ],
       },
     ],
     details: [
@@ -336,14 +620,21 @@ export const PRODUCTS: Product[] = [
     id: 'tokio_ie_treatment',
     name: '京喚羽護髮',
     type: 'treatment',
-    options: [
+    price: 2200,
+    items: [
       {
-        size: '400',
-        price: 2200,
-      },
-      {
-        size: '700',
-        price: 3100,
+        id: 'tokioIeT',
+        name: '喚羽凝脂',
+        options: [
+          {
+            size: 400,
+            price: 2200,
+          },
+          {
+            size: 700,
+            price: 3100,
+          },
+        ],
       },
     ],
     details: [
