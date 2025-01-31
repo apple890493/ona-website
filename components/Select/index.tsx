@@ -1,19 +1,19 @@
 import React from 'react'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 
-interface SelectProps<T extends string | number> {
-  options: { label: string; value: T }[]
-  value?: string | number
+interface SelectProps {
+  options: { label: string; value: string }[]
+  value?: string
   className?: string
-  onChange: (value: T) => void
+  onChange: (value: string) => void
 }
 
-const Select = <T extends string | number>({ options, value, onChange, className }: SelectProps<T>) => {
+const Select = ({ options, value, onChange, className }: SelectProps) => {
   return (
     <div className="relative w-full">
       <select
         value={value}
-        onChange={(e) => onChange(e.target.value as T)}
+        onChange={(e) => onChange(e.target.value)}
         className={`w-full cursor-pointer appearance-none border border-primary rounded-sm bg-zinc-50 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary ${className}`}
       >
         {options.map((option) => (

@@ -28,10 +28,9 @@ const Detail = ({ currentProduct }: DetailProps) => {
     setSelectedOption(product.options[0])
   }
 
-  const onSizeChange = (size: number) => {
+  const onSizeChange = (size: string) => {
     if (!selectedProduct) return
-    const option = selectedProduct.options.find((option) => option.size === size)
-
+    const option = selectedProduct.options.find((option) => option.size === Number(size))
     if (!option) {
       console.error(`Size ${size} not found for product ${selectedProduct.name}`)
       return
@@ -59,7 +58,7 @@ const Detail = ({ currentProduct }: DetailProps) => {
     () =>
       selectedProduct?.options.map((option) => ({
         label: `${option.size} (ml/g)`,
-        value: option.size,
+        value: String(option.size),
       })) || [],
     [selectedProduct]
   )
@@ -76,7 +75,7 @@ const Detail = ({ currentProduct }: DetailProps) => {
 
       <Select options={productOptions} onChange={onProductChange} />
 
-      <Select options={sizeOptions} onChange={onSizeChange} value={selectedOption?.size} />
+      <Select options={sizeOptions} onChange={onSizeChange} value={String(selectedOption?.size)} />
 
       <div className="mb-4 flex flex-col gap-4">
         <div className="flex items-center justify-evenly">

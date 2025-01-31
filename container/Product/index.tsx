@@ -26,12 +26,13 @@ const Product = () => {
 
   return (
     <>
-      <div
-        className="text-fontColorLight mb-2 flex cursor-pointer items-center text-3xl font-bold hover:text-secondary"
-        onClick={backToPreviousPage}
-      >
-        <MdArrowBackIos size={30} />
-        <span>Back</span>
+      <div className="mb-2">
+        <span
+          className="text-fontColorLight inline-flex cursor-pointer items-center text-3xl font-bold hover:text-secondary"
+          onClick={backToPreviousPage}
+        >
+          <MdArrowBackIos size={30} /> Back
+        </span>
       </div>
       <div className="flex flex-col gap-4 lg:flex-row lg:px-6xl">
         <div className="flex flex-1 justify-center lg:justify-end">
