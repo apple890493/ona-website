@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import React, { useMemo } from 'react'
 
 import type { Product } from '@/constants/types'
+import { formatNumber } from '@/utils/formatePrice'
 
 interface ProductCardProps {
   product: Product
@@ -16,6 +18,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const redirectToProduct = () => {
     router.push(`/product/${product.id}`)
   }
+
+  const formattedPrice = useMemo(() => formatNumber(price), [price])
+  const formattedDiscountPrice = useMemo(() => formatNumber(discountPrice), [discountPrice])
 
   return (
     <div
@@ -38,8 +43,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <p className="text-sm text-fontColor tracking-wider md:text-lg">{product.name}</p>
       <p className="text-base text-fontColor font-bold md:text-xl">
         NT$
-        <span className="ml-1 text-fontColor line-through">{price}</span>
-        <span className="ml-2 text-warningColor">{discountPrice}</span>
+        <span className="ml-1 text-fontColor line-through">{formattedPrice}</span>
+        <span className="ml-2 text-warningColor">{formattedDiscountPrice}</span>
       </p>
     </div>
   )

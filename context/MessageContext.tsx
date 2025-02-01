@@ -1,6 +1,7 @@
 import React, { createContext, ReactNode, useContext, useState } from 'react'
 
 import Message from '@/components/Message'
+import { TYPE_ENUM } from '@/components/Message/constants'
 
 const MessageContext = createContext<{
   showMessage: (message: string) => void
@@ -18,7 +19,7 @@ export const MessageProvider = ({ children }: { children: ReactNode }) => {
   return (
     <MessageContext.Provider value={{ showMessage }}>
       {children}
-      {message && <Message message={message} type={'error'} />}
+      {message && <Message message={message} type={TYPE_ENUM.INFO} />}
     </MessageContext.Provider>
   )
 }

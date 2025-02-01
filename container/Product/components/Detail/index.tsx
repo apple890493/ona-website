@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react'
 
 import Select from '@/components/Select'
 import type { OrderItem, Product, ProductItem, ProductOption } from '@/constants/types'
+import { formatNumber } from '@/utils/formatePrice'
 
 interface DetailProps {
   currentProduct: Product
@@ -17,6 +18,10 @@ const Detail = ({ currentProduct, onAddToCart }: DetailProps) => {
   const [selectedOption, setSelectedOption] = useState<ProductOption | undefined>(CURRENT_PRODUCT_DEFAULT.options[0])
   const [amount, setAmount] = useState(1)
   const discountPrice = selectedOption ? selectedOption.price * 0.9 : 0
+
+  const formattedDiscountPrice = useMemo(() => formatNumber(discountPrice), [discountPrice])
+
+  const formattedPrice = useMemo(() => formatNumber(selectedOption?.price || 0), [selectedOption])
 
   const onProductChange = (productId: string) => {
     const product = currentProduct.items.find((item) => item.id === productId)
@@ -82,8 +87,8 @@ const Detail = ({ currentProduct, onAddToCart }: DetailProps) => {
 
       <div className="flex items-baseline text-3xl lg:text-4xl">
         <span className="text-2xl font-bold">NT$</span>
-        <span className="mx-1 text-4xl text-warningColor font-bold">{discountPrice}</span>
-        <span className="text-2xl text-zinc-500 line-through">{selectedOption?.price}</span>
+        <span className="mx-1 text-4xl text-warningColor font-bold">{formattedDiscountPrice}</span>
+        <span className="text-2xl text-zinc-500 line-through">{formattedPrice}</span>
       </div>
 
       <Select options={productOptions} onChange={onProductChange} />
