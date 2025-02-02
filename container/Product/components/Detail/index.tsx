@@ -75,6 +75,8 @@ const Detail = ({ currentProduct, onAddToCart }: DetailProps) => {
       id: selectedProduct.id,
       size: selectedOption.size,
       price: selectedOption.price,
+      name: selectedProduct.name,
+      img: currentProduct.id,
       amount,
     })
 

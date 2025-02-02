@@ -659,3 +659,5 @@ const TOP_PRODUCTS_ENUM = {
 export const TOP_PRODUCTS = Object.values(TOP_PRODUCTS_ENUM).map((id) =>
   PRODUCTS.find((product) => product.id === id)
 ) as Product[]
+
+export const UNAVAILABLE_DISCOUNT_PRODUCTS_PREFIX = ['rica', 'tokioIe']

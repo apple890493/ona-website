@@ -86,12 +86,13 @@ const Navbar = () => {
         <Link
           href="/cart"
           replace
-          className="flex items-center justify-center gap-2 border-2 border-white rounded-md px-4 py-2 text-lg tracking-widest transition-all duration-300 lg:hover:bg-default lg:hover:text-primary"
+          className="flex items-center justify-center gap-2 border-2 border-white rounded-md px-3 py-2 text-lg tracking-widest transition-all duration-300 lg:hover:bg-default lg:hover:text-primary"
         >
-          <span>購物車</span>
           <MdShoppingCart size={30} />
           {cartItemCount > 0 && (
-            <span className="h-6 w-6 rounded-full bg-red-700 text-center text-base text-white">{cartItemCount}</span>
+            <span className="h-6 w-6 rounded-full bg-warningColor text-center text-base text-white">
+              {cartItemCount}
+            </span>
           )}
         </Link>
 

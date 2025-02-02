@@ -20,7 +20,9 @@ export type Product = {
 
 export type OrderItem = {
   id: string
+  name: string
   size: number
   amount: number
   price: number
+  img: string
 }
