@@ -1,17 +1,21 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
-import { OrderItem } from '@/constants/types'
+import { PROMOTIONS, UNAVAILABLE_DISCOUNT_PRODUCTS_PREFIX } from '@/constants/cart'
+import { CartItem, OrderItem } from '@/constants/types'
 
 type CartContextType = {
-  cart: OrderItem[]
+  cart: CartItem[]
   cartItemCount: number
+  totalPrice: number
   addToCart: (item: OrderItem) => void
   resetCart: () => void
+  removeCartItem: (itemId: string) => void
+  updateCartItem: (itemId: string, count: number) => void
 }
 
 const LOCAL_STORAGE_KEY = 'onaCart'
 
-export const CartContext = createContext<CartContextType | null>(null)
+const CartContext = createContext<CartContextType | null>(null)
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<OrderItem[]>([])
@@ -20,6 +24,31 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     const storedCart = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]')
     setCart(storedCart)
   }, [])
+
+  const formattedCart = useMemo(() => {
+    const hasMultipleItems = cart.reduce((total, item) => total + item.amount, 0) >= 2
+
+    return cart.map((item) => {
+      const noDiscountProduct = UNAVAILABLE_DISCOUNT_PRODUCTS_PREFIX.some((prefix) => item.id.startsWith(prefix))
+      const hasSpecialDiscount = !noDiscountProduct && hasMultipleItems
+
+      return {
+        ...item,
+        hasSpecialDiscount,
+        discountPrice: hasSpecialDiscount
+          ? Math.round(item.price * PROMOTIONS.DISCOUNT_SPECIAL)
+          : Math.round(item.price * PROMOTIONS.DISCOUNT_DEFAULT),
+        total:
+          (hasSpecialDiscount
+            ? Math.round(item.price * PROMOTIONS.DISCOUNT_SPECIAL)
+            : Math.round(item.price * PROMOTIONS.DISCOUNT_DEFAULT)) * item.amount,
+      }
+    })
+  }, [cart])
+
+  const totalPrice = useMemo(() => {
+    return formattedCart.reduce((total, item) => total + item.total, 0)
+  }, [formattedCart])
 
   const addToCart = (item: OrderItem) => {
     if (!item) return
@@ -42,13 +71,41 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newCart))
   }
 
+  const removeCartItem = (itemId: string) => {
+    const newCart = cart.filter((cartItem) => cartItem.id !== itemId)
+    setCart([...newCart])
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newCart))
+  }
+
+  const updateCartItem = (itemId: string, count: number) => {
+    const newCart = cart.map((cartItem) => {
+      if (cartItem.id === itemId) {
+        const newAmount = cartItem.amount + count
+        return newAmount > 0 ? { ...cartItem, amount: newAmount } : cartItem
+      }
+      return cartItem
+    })
+    setCart([...newCart])
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newCart))
+  }
+
   const resetCart = () => {
     setCart([])
     localStorage.removeItem(LOCAL_STORAGE_KEY)
   }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, cartItemCount: cart.length, resetCart }}>
+    <CartContext.Provider
+      value={{
+        cart: formattedCart,
+        cartItemCount: cart.length,
+        totalPrice,
+        addToCart,
+        resetCart,
+        removeCartItem,
+        updateCartItem,
+      }}
+    >
       {children}
     </CartContext.Provider>
   )

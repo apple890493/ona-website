@@ -26,3 +26,9 @@ export type OrderItem = {
   price: number
   img: string
 }
+
+export type CartItem = OrderItem & {
+  hasSpecialDiscount: boolean
+  discountPrice: number
+  total: number
+}
