@@ -29,29 +29,33 @@ const Item = ({
 
   return (
     <div className="relative flex flex-col gap-1 border-b-1 border-secondary p-4 lg:flex-row lg:gap-2 [&:last-child]:border-b-0">
-      <Link href={`/product/${item.img}`} className="flex items-center gap-2 lg:w-1/3">
-        <Image src={`/assets/images/products/${item.img}.webp`} alt={item.name} width={60} height={60} />
-        <div>
-          <p className="">{item.name}</p>
-          <p className="text-sm text-fontColorLight">{item.size}ml</p>
+      <div className="flex items-center justify-between lg:w-1/2">
+        <Link href={`/product/${item.img}`} className="w-2/3 flex items-center gap-2">
+          <Image src={`/assets/images/products/${item.img}.webp`} alt={item.name} width={60} height={60} />
+          <div>
+            <p className="">{item.name}</p>
+            <p className="text-sm text-fontColorLight">{item.size}ml</p>
+          </div>
+        </Link>
+        <div className="w-1/3">
+          <p>NT$ {formattedPrice}</p>
+          {!item.hasSpecialDiscount && <p className="text-xs text-warningColor lg:text-sm">未符合 8.5 折品牌</p>}
         </div>
-      </Link>
-      <div className="flex flex-col items-end justify-center lg:w-1/6 lg:items-start">
-        <p>NT$ {formattedPrice}</p>
-        {!item.hasSpecialDiscount && <p className="text-sm text-warningColor">未符合 8.5 折品牌</p>}
       </div>
-      <div className="flex items-center text-left lg:w-1/3 lg:justify-center">
-        <button className="border-1 border-secondary px-2 py-1" onClick={() => onUpdate(item.id, -1)}>
-          -
-        </button>
-        <span className="w-10 appearance-none border-1 border-secondary px-2 py-1 text-center focus:outline-none">
-          {item.amount}
-        </span>
-        <button className="border-1 border-secondary px-2 py-1" onClick={() => onUpdate(item.id, +1)}>
-          +
-        </button>
+      <div className="flex items-center justify-between lg:w-1/2">
+        <div className="w-2/3 flex items-center justify-center">
+          <button className="border-1 border-secondary px-2 py-1" onClick={() => onUpdate(item.id, -1)}>
+            -
+          </button>
+          <span className="w-10 appearance-none border-1 border-secondary px-2 py-1 text-center focus:outline-none">
+            {item.amount}
+          </span>
+          <button className="border-1 border-secondary px-2 py-1" onClick={() => onUpdate(item.id, +1)}>
+            +
+          </button>
+        </div>
+        <div className="w-1/3">NT$ {formattedTotalPrice}</div>
       </div>
-      <div className="hidden items-center justify-end lg:w-1/6 lg:flex lg:justify-start">NT$ {formattedTotalPrice}</div>
       <MdClose
         size={18}
         className="absolute right-4 top-4 cursor-pointer text-fontColorLight"
