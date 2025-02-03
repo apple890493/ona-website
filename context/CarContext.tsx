@@ -1,12 +1,18 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
-import { PROMOTIONS, UNAVAILABLE_DISCOUNT_PRODUCTS_PREFIX } from '@/constants/cart'
-import { CartItem, OrderItem } from '@/constants/types'
+import {
+  DELIVERY_FEE,
+  FREE_SHIPPING_FEE_PRICE,
+  PROMOTIONS,
+  UNAVAILABLE_DISCOUNT_PRODUCTS_PREFIX,
+} from '@/constants/cart'
+import { CartItem, OrderItem, SummaryInfo } from '@/constants/types'
 
 type CartContextType = {
   cart: CartItem[]
   cartItemCount: number
   totalPrice: number
+  summaryInfo: SummaryInfo
   addToCart: (item: OrderItem) => void
   resetCart: () => void
   removeCartItem: (itemId: string) => void
@@ -49,6 +55,14 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const totalPrice = useMemo(() => {
     return formattedCart.reduce((total, item) => total + item.total, 0)
   }, [formattedCart])
+
+  const summaryInfo = useMemo(() => {
+    return {
+      itemSubtotal: totalPrice,
+      deliveryFee: totalPrice >= FREE_SHIPPING_FEE_PRICE ? 0 : DELIVERY_FEE,
+      total: totalPrice >= FREE_SHIPPING_FEE_PRICE ? totalPrice : totalPrice + DELIVERY_FEE,
+    }
+  }, [totalPrice])
 
   const addToCart = (item: OrderItem) => {
     if (!item) return
@@ -100,6 +114,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         cart: formattedCart,
         cartItemCount: cart.length,
         totalPrice,
+        summaryInfo,
         addToCart,
         resetCart,
         removeCartItem,
