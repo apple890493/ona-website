@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import React, { useMemo } from 'react'
 import { MdArrowBackIos, MdAutorenew } from 'react-icons/md'
 
+import { TYPE_ENUM } from '@/components/Message/constants'
 import { PRODUCTS } from '@/constants/products'
 import type { OrderItem, Product } from '@/constants/types'
 import Detail from '@/container/Product/components/Detail'
@@ -31,9 +32,9 @@ const Product = () => {
   const onAddToCart = async (item: OrderItem) => {
     try {
       await addToCart(item)
-      showMessage('已加入購物車')
+      showMessage({ msg: '已加入購物車', type: TYPE_ENUM.INFO })
     } catch (error) {
-      showMessage('已加入購物車失敗')
+      showMessage({ msg: '已加入購物車失敗', type: TYPE_ENUM.ERROR })
     }
   }
 
@@ -41,7 +42,7 @@ const Product = () => {
     <>
       <div className="mb-2">
         <span
-          className="text-fontColorLight inline-flex cursor-pointer items-center text-3xl font-bold hover:text-secondary"
+          className="inline-flex cursor-pointer items-center text-3xl text-fontColorLight font-bold hover:text-secondary"
           onClick={backToPreviousPage}
         >
           <MdArrowBackIos size={30} /> Back

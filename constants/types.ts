@@ -1,3 +1,4 @@
+import { TYPE_ENUM } from '@/components/Message/constants'
 import { CUSTOMER_FORM_KEYS } from '@/constants/cart'
 
 export type ProductItem = {
@@ -45,6 +46,25 @@ export type CustomerForm = {
   name: string
   phone: string
   store: string
+  account: string
 }
 
 export type CustomerFormType = (typeof CUSTOMER_FORM_KEYS)[keyof typeof CUSTOMER_FORM_KEYS]
+
+export type MessageType = (typeof TYPE_ENUM)[keyof typeof TYPE_ENUM]
+
+export type OrderForm = {
+  name: string
+  phone: string
+  store: string
+  account: string
+  items: {
+    name: string
+    size: number
+    amount: number
+    price: number
+    discountType: string
+  }[]
+  deliveryFee: number
+  finalTotal: number
+}

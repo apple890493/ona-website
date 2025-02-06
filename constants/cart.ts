@@ -18,4 +18,5 @@ export const CUSTOMER_FORM_KEYS = {
   NAME: 'name',
   PHONE: 'phone',
   STORE: 'store',
+  ACCOUNT: 'account',
 } as const

@@ -6,7 +6,8 @@ import {
   PROMOTIONS,
   UNAVAILABLE_DISCOUNT_PRODUCTS_PREFIX,
 } from '@/constants/cart'
-import { CartItem, OrderItem, SummaryInfo } from '@/constants/types'
+import type { CartItem, CustomerForm, OrderForm, OrderItem, SummaryInfo } from '@/constants/types'
+import { postOrder } from '@/pages/api/payment'
 
 type CartContextType = {
   cart: CartItem[]
@@ -17,6 +18,7 @@ type CartContextType = {
   resetCart: () => void
   removeCartItem: (itemId: string) => void
   updateCartItem: (itemId: string, count: number) => void
+  submitOrder: (customerForm: CustomerForm) => void
 }
 
 const LOCAL_STORAGE_KEY = 'onaCart'
@@ -108,6 +110,35 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.removeItem(LOCAL_STORAGE_KEY)
   }
 
+  const submitOrder = (customerForm: CustomerForm) => {
+    try {
+      const { name, phone, store, account } = customerForm
+
+      const items = formattedCart.map((item) => ({
+        name: item.name,
+        size: item.size,
+        amount: item.amount,
+        price: item.discountPrice,
+        discountType: item.hasSpecialDiscount ? '（8.5折）' : '（9折）',
+      }))
+
+      const orderForm: OrderForm = {
+        name,
+        phone,
+        store,
+        account,
+        deliveryFee: summaryInfo.deliveryFee,
+        finalTotal: summaryInfo.itemSubtotal,
+        items,
+      }
+
+      postOrder(orderForm)
+    } catch (error) {
+      console.error(error)
+      throw new Error(error as string)
+    }
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -119,6 +150,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         resetCart,
         removeCartItem,
         updateCartItem,
+        submitOrder,
       }}
     >
       {children}

@@ -2,16 +2,22 @@ import React, { createContext, ReactNode, useContext, useState } from 'react'
 
 import Message from '@/components/Message'
 import { TYPE_ENUM } from '@/components/Message/constants'
+import type { MessageType } from '@/constants/types'
+
+type MessageProps = {
+  msg: string
+  type: MessageType
+}
 
 const MessageContext = createContext<{
-  showMessage: (message: string) => void
+  showMessage: (props: MessageProps) => void
 } | null>(null)
 
 export const MessageProvider = ({ children }: { children: ReactNode }) => {
-  const [message, setMessage] = useState<string | null>(null)
+  const [message, setMessage] = useState<MessageProps | null>(null)
 
-  const showMessage = (msg: string) => {
-    setMessage(msg)
+  const showMessage = ({ msg, type = TYPE_ENUM.INFO }: MessageProps) => {
+    setMessage({ msg, type })
     setTimeout(() => {
       setMessage(null)
     }, 1000)
@@ -19,7 +25,7 @@ export const MessageProvider = ({ children }: { children: ReactNode }) => {
   return (
     <MessageContext.Provider value={{ showMessage }}>
       {children}
-      {message && <Message message={message} type={TYPE_ENUM.INFO} />}
+      {message && <Message message={message.msg} type={message.type} />}
     </MessageContext.Provider>
   )
 }

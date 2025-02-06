@@ -50,6 +50,18 @@ const CustomerForm = ({ onUpdate }: OrderInfoProps) => {
           />
         </div>
         <div className="flex flex-col">
+          <label id={CUSTOMER_FORM_KEYS.ACCOUNT} className="font-500">
+            匯款帳號後五碼
+          </label>
+          <input
+            type="text"
+            id={CUSTOMER_FORM_KEYS.ACCOUNT}
+            className={`${FIELD_CLASS}`}
+            placeholder="12345"
+            onChange={onInputChange}
+          />
+        </div>
+        <div className="flex flex-col">
           <label htmlFor={CUSTOMER_FORM_KEYS.STORE} className="font-500">
             便利超商取貨（目前僅提供 7-11 取貨）
           </label>

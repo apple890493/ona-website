@@ -39,7 +39,7 @@ const Item = ({
         </Link>
         <div className="w-1/3">
           <p>NT$ {formattedPrice}</p>
-          {!item.hasSpecialDiscount && <p className="text-xs text-warningColor lg:text-sm">未符合 8.5 折品牌</p>}
+          {!item.hasSpecialDiscount && <p className="text-xs text-warningColor">未符合 8.5 折</p>}
         </div>
       </div>
       <div className="flex items-center justify-between lg:w-1/2">

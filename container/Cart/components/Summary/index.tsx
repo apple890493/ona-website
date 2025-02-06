@@ -5,9 +5,10 @@ import { formatNumber } from '@/utils/formatePrice'
 
 type SummaryProps = {
   summaryInfo: SummaryInfo
+  onSubmit: () => void
 }
 
-const Summary = ({ summaryInfo }: SummaryProps) => {
+const Summary = ({ summaryInfo, onSubmit }: SummaryProps) => {
   const { itemSubtotal, deliveryFee, total } = summaryInfo
   const formattedItemSubtotal = useMemo(() => {
     const formatted = formatNumber(itemSubtotal)
@@ -42,7 +43,12 @@ const Summary = ({ summaryInfo }: SummaryProps) => {
           <span>Total:</span>
           <span>{formattedTotal}</span>
         </div>
-        <button className="rounded bg-primary px-3 py-2 text-white tracking-widest hover:bg-secondary">Checkout</button>
+        <button
+          className="rounded bg-primary px-3 py-2 text-white tracking-widest hover:bg-secondary"
+          onClick={() => onSubmit()}
+        >
+          Checkout
+        </button>
       </div>
     </section>
   )

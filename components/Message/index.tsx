@@ -2,8 +2,7 @@ import React, { memo, useEffect, useState } from 'react'
 import { MdCheckCircle, MdDangerous } from 'react-icons/md'
 
 import { TYPE_ENUM } from '@/components/Message/constants'
-
-type MessageType = (typeof TYPE_ENUM)[keyof typeof TYPE_ENUM]
+import type { MessageType } from '@/constants/types'
 
 const INFO_CLASS = 'border-teal-300 bg-teal-100 text-teal-400'
 const ERROR_CLASS = 'border-rose-300 bg-rose-100 text-rose-400'
@@ -28,7 +27,7 @@ const Message = memo(({ message, type }: { message: string; type: MessageType })
 
   return (
     <div
-      className={`absolute rounded-lg left-1/2 top-8 z-999 h-10 w-[80%] border-2 opacity-80 -translate-x-1/2 ${classNames}`}
+      className={`fixed rounded-lg left-1/2 top-8 z-999 h-10 w-[80%] border-2 opacity-80 -translate-x-1/2 ${classNames}`}
     >
       <div className="h-full flex items-center justify-center text-lg">
         <Icon size={20} className="mr-2" />

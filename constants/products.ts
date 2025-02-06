@@ -228,6 +228,10 @@ export const PRODUCTS: Product[] = [
             size: 500,
             price: 1200,
           },
+          {
+            size: 2000,
+            price: 3000,
+          },
         ],
       },
       {
@@ -238,6 +242,10 @@ export const PRODUCTS: Product[] = [
             size: 500,
             price: 1200,
           },
+          {
+            size: 2000,
+            price: 3000,
+          },
         ],
       },
       {
@@ -247,6 +255,10 @@ export const PRODUCTS: Product[] = [
           {
             size: 500,
             price: 1200,
+          },
+          {
+            size: 2000,
+            price: 3000,
           },
         ],
       },
