@@ -49,22 +49,32 @@ export type CustomerForm = {
   account: string
 }
 
+export type SubmitOrderResponse = {
+  orderId: string
+  paymentDeadline: string
+}
+
 export type CustomerFormType = (typeof CUSTOMER_FORM_KEYS)[keyof typeof CUSTOMER_FORM_KEYS]
 
 export type MessageType = (typeof TYPE_ENUM)[keyof typeof TYPE_ENUM]
 
-export type OrderForm = {
+export type OrderItemPayload = {
+  name: string
+  size: number
+  amount: number
+  price: number
+  discountType: string
+}
+
+export type OrderPayload = {
+  orderId: string
+  orderDate: string
+  paymentDeadline: string
   name: string
   phone: string
   store: string
   account: string
-  items: {
-    name: string
-    size: number
-    amount: number
-    price: number
-    discountType: string
-  }[]
+  items: OrderItemPayload[]
   deliveryFee: number
   finalTotal: number
 }

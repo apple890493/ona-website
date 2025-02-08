@@ -1,8 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 
 import { TYPE_ENUM } from '@/components/Message/constants'
-import type { CustomerForm } from '@/constants/types'
+import type { CustomerForm, SubmitOrderResponse } from '@/constants/types'
 import CartItems from '@/container/Cart/components/CartItems'
+import OrderConfirmPanel from '@/container/Cart/components/OrderConfirmPanel'
 import OrderHint from '@/container/Cart/components/OrderHint'
 import OrderInfo from '@/container/Cart/components/OrderInfo'
 import Summary from '@/container/Cart/components/Summary'
@@ -10,8 +11,13 @@ import { useCart } from '@/context/CarContext'
 import { useMessage } from '@/context/MessageContext'
 
 const Cart = () => {
+  const [isOrderCreated, setIsOrderCreated] = useState(false)
   const { showMessage } = useMessage()
   const { cartItemCount, cart, totalPrice, removeCartItem, updateCartItem, summaryInfo, submitOrder } = useCart()
+  const submitOrderResponse = useRef<SubmitOrderResponse>({
+    orderId: '',
+    paymentDeadline: '',
+  })
 
   const customerFormRef = useRef<CustomerForm>({
     name: '',
@@ -29,10 +35,21 @@ const Cart = () => {
     return true
   }
 
-  const onSubmit = () => {
+  const toggleOrderConfirmPanel = (isShow: boolean) => {
+    setIsOrderCreated(isShow)
+  }
+
+  const onSubmit = async () => {
     const isFormValid = checkCustomerFormValid()
     if (!isFormValid) return
-    submitOrder(customerFormRef.current)
+
+    try {
+      const { orderId, paymentDeadline } = await submitOrder(customerFormRef.current)
+      submitOrderResponse.current = { orderId, paymentDeadline }
+      toggleOrderConfirmPanel(true)
+    } catch (error) {
+      showMessage({ msg: '訂單提交失敗', type: TYPE_ENUM.ERROR })
+    }
   }
 
   const updateCustomerForm = (key: keyof CustomerForm, value: string) => {
@@ -55,6 +72,7 @@ const Cart = () => {
           <Summary summaryInfo={summaryInfo} onSubmit={onSubmit} />
         </div>
       )}
+      {isOrderCreated && <OrderConfirmPanel {...submitOrderResponse.current} onClose={toggleOrderConfirmPanel} />}
     </div>
   )
 }
