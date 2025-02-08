@@ -3,7 +3,7 @@ const OrderHint = () => {
     <div className="mb-4 lg:mb-7">
       <div className="border-1 border-secondary bg-white text-fontColor">
         <div className="border-b-1 border-secondary bg-secondary bg-opacity-30 px-4 py-2 text-lg font-500 tracking-wider">
-          訂購提點
+          訂購提醒
         </div>
         <div className="flex flex-col p-3 text-sm lg:flex-row lg:justify-around lg:text-base">
           <div className="lg:w-[30%]">
@@ -33,7 +33,7 @@ const OrderHint = () => {
               <br />
               須於【收到包裹七天內】提供完整拆封影片
               <br />
-              如無提供完盩拆封影片恕賣埸無法處理
+              如無提供完整拆封影片恕賣埸無法處理
             </p>
           </div>
         </div>

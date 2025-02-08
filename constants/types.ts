@@ -47,6 +47,7 @@ export type CustomerForm = {
   phone: string
   store: string
   account: string
+  designer: string
 }
 
 export type SubmitOrderResponse = {
@@ -67,6 +68,7 @@ export type OrderItemPayload = {
 }
 
 export type OrderPayload = {
+  designer: string
   orderId: string
   orderDate: string
   paymentDeadline: string

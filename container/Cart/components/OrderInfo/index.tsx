@@ -1,9 +1,14 @@
-import { CUSTOMER_FORM_KEYS } from '@/constants/cart'
+import { CUSTOMER_FORM_KEYS, DESIGNER_CONFIG } from '@/constants/cart'
 import type { CustomerForm } from '@/constants/types'
 
 const FIELD_CLASS =
   'border-1 border-secondary rounded-md p-1 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary'
 const E_MAP_URL = 'https://emap.pcsc.com.tw/'
+
+const DESIGNER_CONFIG_MAP = Object.entries(DESIGNER_CONFIG).map(([key, value]) => ({
+  label: key,
+  value,
+}))
 
 type OrderInfoProps = {
   onUpdate: (key: keyof CustomerForm, value: string) => void
@@ -19,12 +24,29 @@ const CustomerForm = ({ onUpdate }: OrderInfoProps) => {
     onUpdate(id as keyof CustomerForm, value)
   }
 
+  const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { id, value } = e.target
+    onUpdate(id as keyof CustomerForm, value)
+  }
+
   return (
     <section className="border-1 border-secondary bg-white text-fontColor lg:w-3/5">
       <div className="border-b-1 border-secondary bg-secondary bg-opacity-30 px-4 py-2 text-lg font-500 tracking-wider">
-        Delivery Information
+        訂購人資訊
       </div>
       <div className="flex flex-col gap-3 p-4">
+        <div className="flex flex-col">
+          <label id={CUSTOMER_FORM_KEYS.DESIGNER} className="font-500">
+            設計師
+          </label>
+          <select id={CUSTOMER_FORM_KEYS.DESIGNER} className={`${FIELD_CLASS}`} onChange={onSelectChange}>
+            {DESIGNER_CONFIG_MAP.map(({ label, value }) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="flex flex-col">
           <label id={CUSTOMER_FORM_KEYS.NAME} className="font-500">
             姓名
@@ -72,7 +94,7 @@ const CustomerForm = ({ onUpdate }: OrderInfoProps) => {
             type="text"
             id={CUSTOMER_FORM_KEYS.STORE}
             className={`${FIELD_CLASS}`}
-            placeholder="自強門市 / 277594"
+            placeholder="自強門市 277594"
             onChange={onInputChange}
           />
         </div>

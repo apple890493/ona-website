@@ -110,7 +110,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const submitOrder = async (customerForm: CustomerForm) => {
-    const { name, phone, store, account } = customerForm
+    const { name, phone, store, account, designer } = customerForm
     const [orderId, orderDate, paymentDeadline] = await Promise.all([
       generateOrderId(),
       getOrderDate(),
@@ -126,6 +126,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }))
 
     const orderForm: OrderPayload = {
+      designer,
       orderId,
       orderDate,
       paymentDeadline,

@@ -207,7 +207,7 @@ export const PRODUCTS: Product[] = [
           },
           {
             size: 1000,
-            price: 4200,
+            price: 4300,
           },
         ],
       },
@@ -250,7 +250,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         id: 'yunaroS3',
-        name: '強韌蘊髮露洗髮精',
+        name: '甦活蘊髮露洗髮精',
         options: [
           {
             size: 500,
@@ -661,11 +661,11 @@ export const PRODUCTS: Product[] = [
 ] as const
 
 const TOP_PRODUCTS_ENUM = {
-  TPO1: 'yunaro_shampoo',
-  TPO2: 'rica_opuntia_treatment',
-  TPO3: 'milbon_shampoo',
-  TPO4: 'rica_opuntia_oil',
-  TPO5: 'qura',
+  TOP1: 'yunaro_care',
+  TPO2: 'yunaro_shampoo',
+  TPO3: 'rica_opuntia_treatment',
+  TPO4: 'milbon_shampoo',
+  TPO5: 'rica_opuntia_oil',
 } as const
 
 export const TOP_PRODUCTS = Object.values(TOP_PRODUCTS_ENUM).map((id) =>

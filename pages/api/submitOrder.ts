@@ -23,7 +23,7 @@ const postOrder = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(405).json({ message: 'Method not allowed' })
   }
 
-  const { name, orderDate, paymentDeadline, phone, store, account, items, deliveryFee, finalTotal, orderId } =
+  const { designer, name, orderDate, paymentDeadline, phone, store, account, items, deliveryFee, finalTotal, orderId } =
     req.body as OrderPayload
   const orderDetails = formatOrderDetails(items)
   const hasDeliveryFee = deliveryFee > 0 ? 'Y' : 'N'
@@ -39,11 +39,23 @@ const postOrder = async (req: NextApiRequest, res: NextApiResponse) => {
     const sheets = google.sheets({ version: 'v4', auth })
     await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'Order1!A:J',
+      range: 'Order1!A:K',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [
-          [orderId, orderDate, orderDetails, name, phone, store, account, finalTotal, hasDeliveryFee, paymentDeadline],
+          [
+            designer,
+            orderId,
+            orderDate,
+            orderDetails,
+            name,
+            phone,
+            store,
+            account,
+            finalTotal,
+            hasDeliveryFee,
+            paymentDeadline,
+          ],
         ],
       },
     })

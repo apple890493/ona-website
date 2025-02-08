@@ -12,7 +12,7 @@ type CartItemsProps = {
   totalPrice: number
   cart: CartItem[]
   onRemove: (id: string) => void
-  onUpdate: (id: string, count: number) => void
+  onUpdate: ({ itemId, size, count }: { itemId: string; size: number; count: number }) => void
 }
 
 const Item = ({
@@ -22,7 +22,7 @@ const Item = ({
 }: {
   item: CartItem
   onRemove: (id: string) => void
-  onUpdate: (id: string, count: number) => void
+  onUpdate: ({ itemId, size, count }: { itemId: string; size: number; count: number }) => void
 }) => {
   const formattedPrice = useMemo(() => formatNumber(item.discountPrice), [item.discountPrice])
   const formattedTotalPrice = useMemo(() => formatNumber(item.total), [item.total])
@@ -44,13 +44,19 @@ const Item = ({
       </div>
       <div className="flex items-center justify-between lg:w-1/2">
         <div className="w-2/3 flex items-center justify-center">
-          <button className="border-1 border-secondary px-2 py-1" onClick={() => onUpdate(item.id, -1)}>
+          <button
+            className="border-1 border-secondary px-2 py-1"
+            onClick={() => onUpdate({ itemId: item.id, size: item.size, count: -1 })}
+          >
             -
           </button>
           <span className="w-10 appearance-none border-1 border-secondary px-2 py-1 text-center focus:outline-none">
             {item.amount}
           </span>
-          <button className="border-1 border-secondary px-2 py-1" onClick={() => onUpdate(item.id, +1)}>
+          <button
+            className="border-1 border-secondary px-2 py-1"
+            onClick={() => onUpdate({ itemId: item.id, size: item.size, count: +1 })}
+          >
             +
           </button>
         </div>
@@ -69,22 +75,22 @@ const CartItems = ({ itemCount, cart, totalPrice, onRemove, onUpdate }: CartItem
   return (
     <section className="border-1 border-secondary bg-white text-fontColor">
       <div className="border-b-1 border-secondary bg-secondary bg-opacity-30 px-4 py-2 text-lg font-500 tracking-wider">
-        Shopping Cart
-        <span className="ml-2 text-fontColorLight">&#10088;{itemCount} items&#10089;</span>
+        購物車
+        {itemCount && <span className="ml-2 text-fontColorLight">&#10088;{itemCount} 項目&#10089;</span>}
       </div>
       <div className="hidden border-b-1 border-secondary p-3 lg:flex lg:gap-2">
-        <div className="w-1/3">Product Name</div>
-        <div className="w-1/6">Price</div>
-        <div className="w-1/3 text-center">Quantity</div>
-        <div className="w-1/6">Total</div>
+        <div className="w-1/3">商品名稱</div>
+        <div className="w-1/6">價格</div>
+        <div className="w-1/3 text-center">數量</div>
+        <div className="w-1/6">單項總和</div>
       </div>
       {itemCount > 0 ? (
-        cart.map((item) => <Item key={item.id} item={item} onRemove={onRemove} onUpdate={onUpdate} />)
+        cart.map((item) => <Item key={item.id + item.size} item={item} onRemove={onRemove} onUpdate={onUpdate} />)
       ) : (
         <div className="h-20 flex items-center justify-center text-fontColorLight">尚未購買商品</div>
       )}
       <div className="px-4 py-2">
-        <div className="mb-4 tracking-wider">Applied Promotions</div>
+        <div className="mb-4 tracking-wider">折扣：</div>
         <span className="mr-2 bg-secondary bg-opacity-30 px-2 py-1 text-xs text-fontColorLight lg:text-sm">
           {PROMOTIONS_TEXT.DISCOUNT_DEFAULT}
         </span>

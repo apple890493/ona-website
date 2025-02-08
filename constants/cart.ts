@@ -10,6 +10,11 @@ export const PROMOTIONS_TEXT = {
   FREE_SHIPPING_FEE: '滿 2500 免運',
 }
 
+export const DESIGNER_CONFIG = {
+  ONA: 'ona',
+  ONA1: 'ona1',
+}
+
 export const UNAVAILABLE_DISCOUNT_PRODUCTS_PREFIX = ['rica', 'tokioIe']
 
 export const FREE_SHIPPING_FEE_PRICE = 2500
@@ -19,4 +24,5 @@ export const CUSTOMER_FORM_KEYS = {
   PHONE: 'phone',
   STORE: 'store',
   ACCOUNT: 'account',
+  DESIGNER: 'designer',
 } as const

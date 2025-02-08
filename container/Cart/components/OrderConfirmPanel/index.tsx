@@ -52,7 +52,7 @@ const OrderConfirmPanel = ({ orderId, paymentDeadline, onClose }: OrderConfirmPa
       </p>
       <button
         className="rounded bg-primary px-3 py-2 text-white tracking-widest hover:bg-secondary"
-        onClick={() => onClose(true)}
+        onClick={() => onClose(false)}
       >
         確認
       </button>

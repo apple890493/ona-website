@@ -27,7 +27,7 @@ const Summary = ({ summaryInfo, onSubmit }: SummaryProps) => {
   return (
     <section className="border-1 border-secondary bg-white text-fontColor lg:w-2/5">
       <div className="border-b-1 border-secondary bg-secondary bg-opacity-30 px-4 py-2 text-lg font-500 tracking-wider">
-        Order Summary
+        訂單總金額
       </div>
       <div className="flex flex-col gap-4 p-4">
         <div className="flex justify-between">
@@ -47,7 +47,7 @@ const Summary = ({ summaryInfo, onSubmit }: SummaryProps) => {
           className="rounded bg-primary px-3 py-2 text-white tracking-widest hover:bg-secondary"
           onClick={() => onSubmit()}
         >
-          Checkout
+          結帳
         </button>
       </div>
     </section>

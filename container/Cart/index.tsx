@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 
 import { TYPE_ENUM } from '@/components/Message/constants'
+import { DESIGNER_CONFIG } from '@/constants/cart'
 import type { CustomerForm, SubmitOrderResponse } from '@/constants/types'
 import CartItems from '@/container/Cart/components/CartItems'
 import OrderConfirmPanel from '@/container/Cart/components/OrderConfirmPanel'
@@ -24,6 +25,7 @@ const Cart = () => {
     phone: '',
     store: '',
     account: '',
+    designer: DESIGNER_CONFIG.ONA,
   })
 
   const checkCustomerFormValid = () => {
