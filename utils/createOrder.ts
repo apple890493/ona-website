@@ -16,3 +16,12 @@ export const getPaymentDeadline = (): string => {
     day: '2-digit',
   })
 }
+
+export const getOrderDate = (): string => {
+  const currentDate = new Date()
+  return currentDate.toLocaleDateString('zh-TW', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  })
+}

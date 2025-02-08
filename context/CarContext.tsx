@@ -6,8 +6,8 @@ import {
   PROMOTIONS,
   UNAVAILABLE_DISCOUNT_PRODUCTS_PREFIX,
 } from '@/constants/cart'
-import type { CartItem, CustomerForm, OrderForm, OrderItem, SummaryInfo } from '@/constants/types'
-import { postOrder } from '@/pages/api/payment'
+import type { CartItem, CustomerForm, OrderItem, OrderPayload, SummaryInfo } from '@/constants/types'
+import { generateOrderId, getOrderDate, getPaymentDeadline } from '@/utils/createOrder'
 
 type CartContextType = {
   cart: CartItem[]
@@ -15,10 +15,9 @@ type CartContextType = {
   totalPrice: number
   summaryInfo: SummaryInfo
   addToCart: (item: OrderItem) => void
-  resetCart: () => void
   removeCartItem: (itemId: string) => void
-  updateCartItem: (itemId: string, count: number) => void
-  submitOrder: (customerForm: CustomerForm) => void
+  updateCartItem: ({ itemId, size, count }: { itemId: string; size: number; count: number }) => void
+  submitOrder: (customerForm: CustomerForm) => Promise<{ orderId: string; paymentDeadline: string }>
 }
 
 const LOCAL_STORAGE_KEY = 'onaCart'
@@ -93,9 +92,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newCart))
   }
 
-  const updateCartItem = (itemId: string, count: number) => {
+  const updateCartItem = ({ itemId, size, count }: { itemId: string; size: number; count: number }) => {
     const newCart = cart.map((cartItem) => {
-      if (cartItem.id === itemId) {
+      if (cartItem.id === itemId && cartItem.size === size) {
         const newAmount = cartItem.amount + count
         return newAmount > 0 ? { ...cartItem, amount: newAmount } : cartItem
       }
@@ -110,33 +109,50 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.removeItem(LOCAL_STORAGE_KEY)
   }
 
-  const submitOrder = (customerForm: CustomerForm) => {
-    try {
-      const { name, phone, store, account } = customerForm
+  const submitOrder = async (customerForm: CustomerForm) => {
+    const { name, phone, store, account } = customerForm
+    const [orderId, orderDate, paymentDeadline] = await Promise.all([
+      generateOrderId(),
+      getOrderDate(),
+      getPaymentDeadline(),
+    ])
 
-      const items = formattedCart.map((item) => ({
-        name: item.name,
-        size: item.size,
-        amount: item.amount,
-        price: item.discountPrice,
-        discountType: item.hasSpecialDiscount ? '（8.5折）' : '（9折）',
-      }))
+    const items = formattedCart.map((item) => ({
+      name: item.name,
+      size: item.size,
+      amount: item.amount,
+      price: item.discountPrice,
+      discountType: item.hasSpecialDiscount ? '（8.5折）' : '（9折）',
+    }))
 
-      const orderForm: OrderForm = {
-        name,
-        phone,
-        store,
-        account,
-        deliveryFee: summaryInfo.deliveryFee,
-        finalTotal: summaryInfo.itemSubtotal,
-        items,
-      }
-
-      postOrder(orderForm)
-    } catch (error) {
-      console.error(error)
-      throw new Error(error as string)
+    const orderForm: OrderPayload = {
+      orderId,
+      orderDate,
+      paymentDeadline,
+      name,
+      phone,
+      store,
+      account,
+      deliveryFee: summaryInfo.deliveryFee,
+      finalTotal: summaryInfo.itemSubtotal,
+      items,
     }
+
+    const response = await fetch('/api/submitOrder', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(orderForm),
+    })
+
+    const result = await response.json()
+    if (!response.ok) {
+      throw new Error(result.message)
+    }
+
+    resetCart()
+    return { orderId, paymentDeadline }
   }
 
   return (
@@ -147,7 +163,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         totalPrice,
         summaryInfo,
         addToCart,
-        resetCart,
         removeCartItem,
         updateCartItem,
         submitOrder,
