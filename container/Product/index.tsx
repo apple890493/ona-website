@@ -45,7 +45,7 @@ const Product = () => {
           className="inline-flex cursor-pointer items-center text-3xl text-fontColorLight font-bold hover:text-secondary"
           onClick={backToPreviousPage}
         >
-          <MdArrowBackIos size={30} /> Back
+          <MdArrowBackIos size={30} /> 返回
         </span>
       </div>
       <div className="flex flex-col gap-4 lg:flex-row lg:px-6xl">
