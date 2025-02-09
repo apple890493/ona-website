@@ -12,7 +12,8 @@ import { useCart } from '@/context/CarContext'
 import { useMessage } from '@/context/MessageContext'
 
 const Cart = () => {
-  const [isOrderCreated, setIsOrderCreated] = useState(false)
+  const [isProcessing, setIsProcessing] = useState(false)
+  const [visibleOrderConfirmPanel, setVisibleOrderConfirmPanel] = useState(false)
   const { showMessage } = useMessage()
   const { cartItemCount, cart, totalPrice, removeCartItem, updateCartItem, summaryInfo, submitOrder } = useCart()
   const submitOrderResponse = useRef<SubmitOrderResponse>({
@@ -38,7 +39,7 @@ const Cart = () => {
   }
 
   const toggleOrderConfirmPanel = (isShow: boolean) => {
-    setIsOrderCreated(isShow)
+    setVisibleOrderConfirmPanel(isShow)
   }
 
   const onSubmit = async () => {
@@ -46,11 +47,14 @@ const Cart = () => {
     if (!isFormValid) return
 
     try {
+      setIsProcessing(true)
       const { orderId, paymentDeadline } = await submitOrder(customerFormRef.current)
       submitOrderResponse.current = { orderId, paymentDeadline }
       toggleOrderConfirmPanel(true)
     } catch (error) {
       showMessage({ msg: '訂單提交失敗', type: TYPE_ENUM.ERROR })
+    } finally {
+      setIsProcessing(false)
     }
   }
 
@@ -71,10 +75,16 @@ const Cart = () => {
       {cartItemCount > 0 && (
         <div className="mt-4 flex flex-col gap-4 lg:mt-7 lg:flex-row">
           <OrderInfo onUpdate={updateCustomerForm} />
-          <Summary summaryInfo={summaryInfo} onSubmit={onSubmit} />
+          <Summary summaryInfo={summaryInfo} onSubmit={onSubmit} isProcessing={isProcessing} />
         </div>
       )}
-      {isOrderCreated && <OrderConfirmPanel {...submitOrderResponse.current} onClose={toggleOrderConfirmPanel} />}
+      {visibleOrderConfirmPanel && (
+        <OrderConfirmPanel
+          {...submitOrderResponse.current}
+          designer={customerFormRef.current.designer}
+          onClose={toggleOrderConfirmPanel}
+        />
+      )}
     </div>
   )
 }

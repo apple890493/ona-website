@@ -12,7 +12,7 @@ export const PROMOTIONS_TEXT = {
 
 export const DESIGNER_CONFIG = {
   ONA: 'ona',
-  ONA1: 'ona1',
+  ALINA: 'Alina',
 }
 
 export const UNAVAILABLE_DISCOUNT_PRODUCTS_PREFIX = ['rica', 'tokioIe']
@@ -26,3 +26,14 @@ export const CUSTOMER_FORM_KEYS = {
   ACCOUNT: 'account',
   DESIGNER: 'designer',
 } as const
+
+export const ACCOUNT_CONFIG = {
+  [DESIGNER_CONFIG.ONA]: {
+    bankCode: '822',
+    bankAccount: '820540212949',
+  },
+  [DESIGNER_CONFIG.ALINA]: {
+    bankCode: '822',
+    bankAccount: '0000668540239621',
+  },
+}

@@ -411,7 +411,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'qura',
     name: '雪球藍慕斯',
-    type: 'treatment',
+    type: 'styling',
     price: 900,
     items: [
       {

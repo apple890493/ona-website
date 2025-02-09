@@ -4,11 +4,12 @@ import { SummaryInfo } from '@/constants/types'
 import { formatNumber } from '@/utils/formatePrice'
 
 type SummaryProps = {
+  isProcessing: boolean
   summaryInfo: SummaryInfo
   onSubmit: () => void
 }
 
-const Summary = ({ summaryInfo, onSubmit }: SummaryProps) => {
+const Summary = ({ isProcessing, summaryInfo, onSubmit }: SummaryProps) => {
   const { itemSubtotal, deliveryFee, total } = summaryInfo
   const formattedItemSubtotal = useMemo(() => {
     const formatted = formatNumber(itemSubtotal)
@@ -27,27 +28,28 @@ const Summary = ({ summaryInfo, onSubmit }: SummaryProps) => {
   return (
     <section className="border-1 border-secondary bg-white text-fontColor lg:w-2/5">
       <div className="border-b-1 border-secondary bg-secondary bg-opacity-30 px-4 py-2 text-lg font-500 tracking-wider">
-        訂單總金額
+        訂單費用
       </div>
       <div className="flex flex-col gap-4 p-4">
         <div className="flex justify-between">
-          <span>Item Subtotal:</span>
+          <span>商品總額:</span>
           <span>{formattedItemSubtotal}</span>
         </div>
         <div className="flex justify-between">
-          <span>Delivery Fee:</span>
+          <span>運費:</span>
           <span>{formattedDeliveryFee}</span>
         </div>
         <div className="border-t-1 border-secondary"></div>
         <div className="flex justify-between">
-          <span>Total:</span>
+          <span>總計:</span>
           <span>{formattedTotal}</span>
         </div>
         <button
           className="rounded bg-primary px-3 py-2 text-white tracking-widest hover:bg-secondary"
           onClick={() => onSubmit()}
+          disabled={isProcessing}
         >
-          結帳
+          {isProcessing ? '處理中' : '確認'}
         </button>
       </div>
     </section>

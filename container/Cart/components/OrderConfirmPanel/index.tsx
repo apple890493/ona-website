@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { MdContentCopy, MdOutlineInfo } from 'react-icons/md'
 
+import { ACCOUNT_CONFIG } from '@/constants/cart'
 import type { SubmitOrderResponse } from '@/constants/types'
 
 type OrderConfirmPanelProps = SubmitOrderResponse & {
   onClose: (isOpen: boolean) => void
+  designer: string
 }
 
 const CopyButton = () => {
@@ -28,7 +30,7 @@ const CopyButton = () => {
   )
 }
 
-const OrderConfirmPanel = ({ orderId, paymentDeadline, onClose }: OrderConfirmPanelProps) => {
+const OrderConfirmPanel = ({ orderId, paymentDeadline, designer, onClose }: OrderConfirmPanelProps) => {
   return (
     <div className="fixed left-1/2 top-1/2 z-999 w-[90%] flex flex-col gap-4 border-3 border-secondary rounded-lg bg-white p-4 text-fontColor shadow lg:w-auto -translate-x-1/2 -translate-y-1/2">
       <p className="text-center text-lg font-bold">訂單已成功送出</p>
@@ -37,15 +39,15 @@ const OrderConfirmPanel = ({ orderId, paymentDeadline, onClose }: OrderConfirmPa
         付款截止日：
         <span className="tracking-wider">{paymentDeadline}</span>
       </p>
-      <p>匯款銀行：812</p>
+      <p>匯款銀行：{ACCOUNT_CONFIG[designer].bankCode}</p>
       <div className="flex items-center gap-2">
-        匯款帳號：0000-0000-0000-0000
+        匯款帳號：{ACCOUNT_CONFIG[designer].bankAccount}
         <CopyButton />
       </div>
-      <p className="flex items-center gap-2 text-primary">
+      <div className="flex items-center gap-2 text-primary">
         <MdOutlineInfo size={20} />
-        請於<strong className="text-warningColor">付款截止日前</strong>完成付款，避免訂單取消
-      </p>
+        請於付款截止日前完成付款，避免訂單取消
+      </div>
       <p className="flex items-center gap-2 text-primary">
         <MdOutlineInfo size={20} />
         建議儲存此頁面，以利後續查詢
