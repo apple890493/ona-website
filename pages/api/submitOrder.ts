@@ -23,10 +23,21 @@ const postOrder = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(405).json({ message: 'Method not allowed' })
   }
 
-  const { designer, name, orderDate, paymentDeadline, phone, store, account, items, deliveryFee, finalTotal, orderId } =
-    req.body as OrderPayload
+  const {
+    designer,
+    name,
+    orderDate,
+    paymentDeadline,
+    phone,
+    store,
+    account,
+    items,
+    hasDeliveryFee,
+    finalTotal,
+    orderId,
+  } = req.body as OrderPayload
   const orderDetails = formatOrderDetails(items)
-  const hasDeliveryFee = deliveryFee > 0 ? 'Y' : 'N'
+  const deliveryFeeStatus = hasDeliveryFee ? 'Y' : 'N'
 
   try {
     const auth = new google.auth.JWT(
@@ -53,7 +64,7 @@ const postOrder = async (req: NextApiRequest, res: NextApiResponse) => {
             store,
             account,
             finalTotal,
-            hasDeliveryFee,
+            deliveryFeeStatus,
             paymentDeadline,
           ],
         ],

@@ -66,19 +66,19 @@ const Navbar = () => {
         <MdContentCut size={30} />
         <div className="border-logo w-15 border-b-3 text-center text-lg font-bold tracking-widest">ONA</div>
       </Link>
+      <Image
+        src="/assets/images/sale.webp"
+        alt="product"
+        width={120}
+        height={0}
+        style={{
+          width: 'auto',
+          height: 'auto',
+        }}
+        priority
+      />
 
       <div className="hidden flex-grow-1 items-center gap-sm lg:flex">
-        <Image
-          src="/assets/images/sale.webp"
-          alt="product"
-          width={120}
-          height={0}
-          style={{
-            width: 'auto',
-            height: 'auto',
-          }}
-          priority
-        />
         <DesktopMenu onRedirect={redirectToCategories} />
       </div>
 

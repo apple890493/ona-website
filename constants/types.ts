@@ -77,6 +77,6 @@ export type OrderPayload = {
   store: string
   account: string
   items: OrderItemPayload[]
-  deliveryFee: number
+  hasDeliveryFee: boolean
   finalTotal: number
 }

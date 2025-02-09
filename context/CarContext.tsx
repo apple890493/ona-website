@@ -134,8 +134,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       phone,
       store,
       account,
-      deliveryFee: summaryInfo.deliveryFee,
-      finalTotal: summaryInfo.itemSubtotal,
+      hasDeliveryFee: summaryInfo.deliveryFee > 0,
+      finalTotal: summaryInfo.total,
       items,
     }
 

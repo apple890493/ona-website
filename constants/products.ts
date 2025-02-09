@@ -83,6 +83,20 @@ export const PRODUCTS: Product[] = [
           },
         ],
       },
+      {
+        id: 'milbonS7',
+        name: '金澤洗髮精',
+        options: [
+          {
+            size: 200,
+            price: 900,
+          },
+          {
+            size: 500,
+            price: 1900,
+          },
+        ],
+      },
     ],
     details: [
       [
@@ -285,7 +299,7 @@ export const PRODUCTS: Product[] = [
           },
           {
             size: 500,
-            price: 1290,
+            price: 2900,
           },
         ],
       },
@@ -299,7 +313,7 @@ export const PRODUCTS: Product[] = [
           },
           {
             size: 500,
-            price: 1290,
+            price: 2090,
           },
         ],
       },
@@ -313,7 +327,7 @@ export const PRODUCTS: Product[] = [
           },
           {
             size: 500,
-            price: 1290,
+            price: 2900,
           },
         ],
       },
@@ -425,13 +439,7 @@ export const PRODUCTS: Product[] = [
         ],
       },
     ],
-    details: [
-      [
-        '<雪球藍慕斯>',
-        '創造輕盈感的鮮明線條',
-        '使用方式：洗髮後，將頭髮分線，噴抹於髮根，稍加按摩，無須沖洗，建議每天使用持續六周以上',
-      ],
-    ],
+    details: [['<雪球藍慕斯>', '創造輕盈感的鮮明線條', '適合捲髮造型，完全不黏膩']],
   },
   {
     id: 'yunaro_care',
@@ -576,6 +584,25 @@ export const PRODUCTS: Product[] = [
         '造型力：★★★☆☆',
       ],
     ],
+  },
+  {
+    id: 'wella_sculpt_force',
+    name: '秒凍膠',
+    type: 'styling',
+    price: 700,
+    items: [
+      {
+        id: 'wellaSculptForce',
+        name: '秒凍膠',
+        options: [
+          {
+            size: 125,
+            price: 700,
+          },
+        ],
+      },
+    ],
+    details: [['<秒凍膠>', '濕潤感造型 線條感極強']],
   },
   {
     id: 'rica_unique_matt_clay',
