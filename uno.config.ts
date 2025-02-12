@@ -29,7 +29,7 @@ export default defineConfig({
       fontColor: '#422006',
       fontColorLight: '#713f12',
       warningColor: '#d62828',
-      backgroundColor: '#fef9ef',
+      backgroundColor: '#ffffff',
     },
   },
   transformers: [transformerDirective()],
