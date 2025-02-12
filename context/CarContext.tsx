@@ -6,7 +6,14 @@ import {
   PROMOTIONS,
   UNAVAILABLE_DISCOUNT_PRODUCTS_PREFIX,
 } from '@/constants/cart'
-import type { CartItem, CustomerForm, OrderItem, OrderPayload, SummaryInfo } from '@/constants/types'
+import type {
+  CartItem,
+  CustomerForm,
+  OrderItem,
+  OrderPayload,
+  SubmitOrderResponse,
+  SummaryInfo,
+} from '@/constants/types'
 import { generateOrderId, getOrderDate, getPaymentDeadline } from '@/utils/createOrder'
 
 type CartContextType = {
@@ -17,7 +24,7 @@ type CartContextType = {
   addToCart: (item: OrderItem) => void
   removeCartItem: (itemId: string) => void
   updateCartItem: ({ itemId, size, count }: { itemId: string; size: number; count: number }) => void
-  submitOrder: (customerForm: CustomerForm) => Promise<{ orderId: string; paymentDeadline: string }>
+  submitOrder: (customerForm: CustomerForm) => Promise<SubmitOrderResponse>
 }
 
 const LOCAL_STORAGE_KEY = 'onaCart'
@@ -153,7 +160,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     resetCart()
-    return { orderId, paymentDeadline }
+    return { orderId, paymentDeadline, totalPrice: summaryInfo.total }
   }
 
   return (

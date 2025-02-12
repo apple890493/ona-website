@@ -30,11 +30,12 @@ const CopyButton = () => {
   )
 }
 
-const OrderConfirmPanel = ({ orderId, paymentDeadline, designer, onClose }: OrderConfirmPanelProps) => {
+const OrderConfirmPanel = ({ orderId, paymentDeadline, totalPrice, designer, onClose }: OrderConfirmPanelProps) => {
   return (
     <div className="fixed left-1/2 top-1/2 z-999 w-[90%] flex flex-col gap-4 border-3 border-secondary rounded-lg bg-white p-4 text-fontColor shadow lg:w-auto -translate-x-1/2 -translate-y-1/2">
       <p className="text-center text-lg font-bold">訂單已成功送出</p>
       <p>訂單編號：{orderId}</p>
+      <p>總金額：NT$ {totalPrice}</p>
       <p>
         付款截止日：
         <span className="tracking-wider">{paymentDeadline}</span>

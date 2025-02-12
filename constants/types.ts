@@ -53,6 +53,7 @@ export type CustomerForm = {
 export type SubmitOrderResponse = {
   orderId: string
   paymentDeadline: string
+  totalPrice: number
 }
 
 export type CustomerFormType = (typeof CUSTOMER_FORM_KEYS)[keyof typeof CUSTOMER_FORM_KEYS]

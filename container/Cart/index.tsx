@@ -19,6 +19,7 @@ const Cart = () => {
   const submitOrderResponse = useRef<SubmitOrderResponse>({
     orderId: '',
     paymentDeadline: '',
+    totalPrice: 0,
   })
 
   const customerFormRef = useRef<CustomerForm>({
@@ -48,8 +49,8 @@ const Cart = () => {
 
     try {
       setIsProcessing(true)
-      const { orderId, paymentDeadline } = await submitOrder(customerFormRef.current)
-      submitOrderResponse.current = { orderId, paymentDeadline }
+      const { orderId, paymentDeadline, totalPrice } = await submitOrder(customerFormRef.current)
+      submitOrderResponse.current = { orderId, paymentDeadline, totalPrice }
       toggleOrderConfirmPanel(true)
     } catch (error) {
       showMessage({ msg: '訂單提交失敗', type: TYPE_ENUM.ERROR })
