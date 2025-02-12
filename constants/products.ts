@@ -276,11 +276,26 @@ export const PRODUCTS: Product[] = [
           },
         ],
       },
+      {
+        id: 'yunaroS4',
+        name: '青春蘊髮露洗髮精',
+        options: [
+          {
+            size: 500,
+            price: 1200,
+          },
+          {
+            size: 2000,
+            price: 3000,
+          },
+        ],
+      },
     ],
     details: [
       ['<淨化蘊髮露洗髮精>', '去油淨化 補充水能量', '適合：油性、雄性禿'],
       ['<平衡蘊髮露洗髮精>', '益⽣菌養髮 補充水份 平衡頭皮油脂', '適合：汗濕、細弱髮、運動後、⽑囊炎'],
       ['<甦活蘊髮露洗髮精>', '專為敏感肌打造 溫和調裡 舒緩頭皮', '適合：敏感、乾性、壓⼒型落髮'],
+      ['<青春蘊髮露洗髮精>', '活絡頭皮，提振活力', '適合：熟齡肌、糖化、老化'],
     ],
   },
   {
@@ -421,25 +436,6 @@ export const PRODUCTS: Product[] = [
       ],
       ['<極塑造型噴霧１０號>', '質感表現-定型力、速乾'],
     ],
-  },
-  {
-    id: 'qura',
-    name: '雪球藍慕斯',
-    type: 'styling',
-    price: 900,
-    items: [
-      {
-        id: 'qura',
-        name: '雪球藍慕斯',
-        options: [
-          {
-            size: 200,
-            price: 900,
-          },
-        ],
-      },
-    ],
-    details: [['<雪球藍慕斯>', '創造輕盈感的鮮明線條', '適合捲髮造型，完全不黏膩']],
   },
   {
     id: 'yunaro_care',
@@ -586,25 +582,6 @@ export const PRODUCTS: Product[] = [
     ],
   },
   {
-    id: 'wella_sculpt_force',
-    name: '秒凍膠',
-    type: 'styling',
-    price: 700,
-    items: [
-      {
-        id: 'wellaSculptForce',
-        name: '秒凍膠',
-        options: [
-          {
-            size: 125,
-            price: 700,
-          },
-        ],
-      },
-    ],
-    details: [['<秒凍膠>', '濕潤感造型 線條感極強']],
-  },
-  {
     id: 'rica_unique_matt_clay',
     name: 'RICA 火山亮感蠟',
     type: 'styling',
@@ -628,6 +605,44 @@ export const PRODUCTS: Product[] = [
         '造型力：★★☆☆☆',
       ],
     ],
+  },
+  {
+    id: 'wella_sculpt_force',
+    name: '秒凍膠',
+    type: 'styling',
+    price: 700,
+    items: [
+      {
+        id: 'wellaSculptForce',
+        name: '秒凍膠',
+        options: [
+          {
+            size: 125,
+            price: 700,
+          },
+        ],
+      },
+    ],
+    details: [['<秒凍膠>', '濕潤感造型 線條感極強']],
+  },
+  {
+    id: 'qura',
+    name: '雪球藍慕斯',
+    type: 'styling',
+    price: 900,
+    items: [
+      {
+        id: 'qura',
+        name: '雪球藍慕斯',
+        options: [
+          {
+            size: 200,
+            price: 900,
+          },
+        ],
+      },
+    ],
+    details: [['<雪球藍慕斯>', '創造輕盈感的鮮明線條', '適合捲髮造型，完全不黏膩']],
   },
   {
     id: 'tokio_ie_shampoo',
