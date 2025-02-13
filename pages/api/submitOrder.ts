@@ -48,26 +48,47 @@ const postOrder = async (req: NextApiRequest, res: NextApiResponse) => {
     )
 
     const sheets = google.sheets({ version: 'v4', auth })
-    await sheets.spreadsheets.values.append({
+    await sheets.spreadsheets.batchUpdate({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'Order1!A:K',
+      requestBody: {
+        requests: [
+          {
+            insertDimension: {
+              range: {
+                sheetId: 0,
+                dimension: 'ROWS',
+                startIndex: 1,
+                endIndex: 2,
+              },
+              inheritFromBefore: false,
+            },
+          },
+        ],
+      },
+    })
+
+    const values = [
+      [
+        designer,
+        orderId,
+        orderDate,
+        orderDetails,
+        name,
+        phone,
+        store,
+        account,
+        finalTotal,
+        deliveryFeeStatus,
+        paymentDeadline,
+      ],
+    ]
+
+    await sheets.spreadsheets.values.update({
+      spreadsheetId: SPREADSHEET_ID,
+      range: 'Order1!A2:K2',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
-        values: [
-          [
-            designer,
-            orderId,
-            orderDate,
-            orderDetails,
-            name,
-            phone,
-            store,
-            account,
-            finalTotal,
-            deliveryFeeStatus,
-            paymentDeadline,
-          ],
-        ],
+        values,
       },
     })
 

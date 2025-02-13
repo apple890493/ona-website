@@ -30,10 +30,19 @@ const Cart = () => {
     designer: DESIGNER_CONFIG.ONA,
   })
 
+  const checkStoreValid = (store: string) => {
+    return store.includes('門市')
+  }
+
   const checkCustomerFormValid = () => {
     const { name, phone, store, account } = customerFormRef.current
     if (!name || !phone || !store || !account) {
       showMessage({ msg: '請填寫完整正確資料', type: TYPE_ENUM.ERROR })
+      return false
+    }
+    const isStoreValid = checkStoreValid(store)
+    if (!isStoreValid) {
+      showMessage({ msg: '請正確填寫門市資訊如「ＸＸ門市」', type: TYPE_ENUM.ERROR })
       return false
     }
     return true
