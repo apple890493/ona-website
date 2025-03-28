@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <div className="text-center text-rose-300 font-bold tracking-widest lg:text-4xl">
         <p>產品全面１件９折 / ２件以上８.5折【除了 Rica & 京喚羽】</p>
-        <p>全館滿 2500 元免運費</p>
+        <p>全館滿 3000 元免運費</p>
       </div>
       <h1 className="py-4xl text-center text-4xl text-fontColorLight font-bold tracking-widest">熱門商品</h1>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-3xl">
